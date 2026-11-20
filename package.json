@@ -1,0 +1,39 @@
+{
+  "name": "pos-support-manager",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present && tsc -p scripts/tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migrate": "tsx --env-file=.env scripts/migrate.ts",
+    "db:seed-periods": "tsx --env-file=.env scripts/seed-periods.ts",
+    "dev:api": "tsx watch --env-file=.env apps/api/src/server.ts",
+    "dev:worker": "tsx watch --env-file=.env apps/worker/src/main.ts",
+    "start:api": "tsx --env-file=.env apps/api/src/server.ts",
+    "start:worker": "tsx --env-file=.env apps/worker/src/main.ts",
+    "create-office": "tsx --env-file=.env scripts/create-office.ts",
+    "create-system-admin": "tsx --env-file=.env scripts/create-system-admin.ts",
+    "seed": "tsx --env-file=.env scripts/seed.ts",
+    "perf:explain": "tsx --env-file=.env scripts/explain-report.ts",
+    "bench:import": "tsx --env-file=.env scripts/bench-import.ts",
+    "dev:web": "npm run dev -w @pos/web",
+    "build:web": "npm run build -w @pos/web",
+    "db:archive": "tsx --env-file=.env scripts/archive-partitions.ts",
+    "seed:demo": "tsx --env-file=.env scripts/seed-demo.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
